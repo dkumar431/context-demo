@@ -6,37 +6,37 @@ const divStyle = {
   border: "2px solid black",
 };
 
-const Bikes = () => {
-  console.log("Bikes rerendered.");
+const Trucks = () => {
+  console.log("Trucks rerendered.");
 
-  const { bikes } = useStore();
+  const { trucks } = useStore();
   const dispatch = useStoreDispatch();
-  const [newBike, setNewBike] = useState("");
+  const [newTruck, setNewTruck] = useState("");
 
   return (
     <div style={divStyle}>
-      <h3>Bikes</h3>
+      <h3>Trucks</h3>
 
       <input
         type="text"
-        value={newBike}
-        onChange={(e) => setNewBike(e.target.value)}
+        value={newTruck}
+        onChange={(e) => setNewTruck(e.target.value)}
       />
       <button
         onClick={() => {
-          dispatch({ type: "ADD_BIKE", payload: newBike });
-          setNewBike("");
+          dispatch({ type: "ADD_TRUCK", payload: newTruck });
+          setNewTruck("");
         }}
       >
         Add
       </button>
       <ul>
-        {bikes.map((bike) => (
-          <li key={bike}>{bike}</li>
+        {trucks.map((truck) => (
+          <li key={truck}>{truck}</li>
         ))}
       </ul>
     </div>
   );
 };
 
-export default Bikes;
+export default Trucks;

@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import { useStore, useStoreDispatch } from "./store";
+import withStateSlice from "./utils";
 
-const Cars = () => {
-  console.log('Cars rerendered.')
-  const { cars } = useStore();
+const divStyle = {
+  width: "300px",
+  border: "2px solid black",
+};
+
+const Cars = ({ state: cars }) => {
+  console.log("Cars rerendered.", cars);
   const dispatch = useStoreDispatch();
 
   const [newcar, setNewCar] = useState("");
   return (
-    <div style={{ width: '200px', height: '100px' }}>
-      {cars.map(car => (
-        <div key={car}>{car}</div>
-      ))}
+    <div style={divStyle}>
+      <h3>Cars</h3>
+
       <input
         type="text"
         value={newcar}
-        onChange={e => setNewCar(e.target.value)}
+        onChange={(e) => setNewCar(e.target.value)}
       />
       <button
         onClick={() => {
@@ -25,8 +29,16 @@ const Cars = () => {
       >
         Add
       </button>
+      <ul>
+        {cars.map((car) => (
+          <li key={car}>{car}</li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Cars;
+export default withStateSlice(Cars, (state) => {
+  const { cars } = state;
+  return cars;
+});

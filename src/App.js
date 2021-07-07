@@ -1,23 +1,28 @@
-import React, { createContext, useReducer, useContext } from "react";
-import Users from "./Users";
+import React from "react";
+import Trucks from "./Trucks";
 import Cars from "./Cars";
 import Bikes from "./Bikes";
 
-import MyContextProvider from './store';
+import MyContextProvider from "./store";
 
+// const appStyle = {
+//   display: "flex",
+//   flexDirection: "row",
+//   justifyContent: "space-around",
+// };
+const appStyle = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr 1fr",
+};
 
 export default function App() {
   return (
-    <div className="App">
+    <div style={appStyle}>
       <MyContextProvider>
-        <Bikes />
-        <br />
-        <Users />
-        <br />
+        <Trucks />
         <Cars />
-
+        <Bikes />
       </MyContextProvider>
-
     </div>
   );
 }
